@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>Publicaciones</h2>
+
+    @if (carregant()) {
+    <div class="loading">
+        <p>Carregant publicacions...</p>
+    </div>
+    }
+
+    @if (error()) {
+    <div class="error">
+        <p>{{ error() }}</p>
+        <button (click)="carregarPublicacions()">Tornar a provar</button>
+    </div>
+    }
+
+    @if (!carregant() && !error()) {
+    <div class="publicacions-list">
+      @for (publicacio of getPublicacionsPagina(); track publicacio.id) {
+        <article class="publicacio-card">
+          <h3>{{ publicacio.title }}</h3>
+          <p>{{ publicacio.body }}</p>
+          <span class="autor">Usuari #{{ publicacio.userId }}</span>
+        </article>
+      }
+    </div>
+    <div>
+      <button (click)="paginaAnterior()">Anterior</button>
+      <button (click)="paginaSeguent()">Siguiente</button>
+    </div>
+    }
+</div>

@@ -1,0 +1,40 @@
+<div class="container">
+    <h2>Lista de usuarios</h2>
+
+    <!-- Indicador de carga -->
+    @if (carregant()) {
+    <div class="loading">
+        <p>Cargando usuario... .</p>
+    </div>
+    }
+
+    <!-- Mensaje de error -->
+    @if (error()) {
+    <div class="error">
+        <p> {{error()}} </p>
+        <button (click)="carregarUsuaris()">Volver a probar</button>
+    </div>
+    }
+
+    <!-- Lista de usuarios -->
+    @if (!carregant() && !error()) {
+    <div class="usuaris-grid">
+        @for (usuari of usuaris(); track usuari.id) {
+        <div class="usuari-card">
+            <h3>{{ usuari.name }}</h3>
+            <p class="username">@{{ usuari.username }}</p>
+            <p><strong>Email:</strong> {{ usuari.email }}</p>
+            @if (usuari.phone) {
+            <p><strong>Telèfon:</strong> {{ usuari.phone }}</p>
+            }
+            @if (usuari.website) {
+            <p><strong>Web:</strong> {{ usuari.website }}</p>
+            }
+            @if (usuari.company) {
+            <p><strong>Empresa:</strong> {{ usuari.company.name }}</p>
+            }
+        </div>
+        }
+    </div>
+    }
+</div>
