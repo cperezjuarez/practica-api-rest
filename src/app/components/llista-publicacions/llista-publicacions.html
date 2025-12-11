@@ -1,32 +1,42 @@
-<div class="container">
-    <h2>Publicaciones</h2>
+<div class="container my-5">
+  <h2 class="text-center mb-4">Publicaciones</h2>
 
-    @if (carregant()) {
-    <div class="loading">
-        <p>Carregant publicacions...</p>
+  @if (carregant()) {
+    <section class="row pt-5">
+        <div class="spinner-border mx-auto" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </section>
+  }
+
+  @if (error()) {
+  <section class="error">
+    <p>{{ error() }}</p>
+    <button (click)="carregarPublicacions()">Tornar a provar</button>
+  </section>
+  }
+
+  @if (!carregant() && !error()) {
+  <section class="row">
+    @for (publicacio of getPublicacionsPagina(); track publicacio.id) {
+    <div class="col-12 pb-4">
+      <div class="card shadow-sm border-0 rounded-4 p-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ publicacio.title }}</h5>
+          <p class="card-text">{{ publicacio.body }}</p>
+        </div>
+        <div class="card-footer bg-transparent border-0">
+          <small class="text-muted">Usuari #{{ publicacio.userId }}</small>
+        </div>
+      </div>
     </div>
     }
+  </section>
 
-    @if (error()) {
-    <div class="error">
-        <p>{{ error() }}</p>
-        <button (click)="carregarPublicacions()">Tornar a provar</button>
-    </div>
-    }
+  <div class="d-flex justify-content-between mb-5">
+    <button class="btn btn-secondary" (click)="paginaAnterior()">Anterior</button>
+    <button class="btn btn-primary" (click)="paginaSeguent()">Siguiente</button>
+  </div>
+  }
 
-    @if (!carregant() && !error()) {
-    <div class="publicacions-list">
-      @for (publicacio of getPublicacionsPagina(); track publicacio.id) {
-        <article class="publicacio-card">
-          <h3>{{ publicacio.title }}</h3>
-          <p>{{ publicacio.body }}</p>
-          <span class="autor">Usuari #{{ publicacio.userId }}</span>
-        </article>
-      }
-    </div>
-    <div>
-      <button (click)="paginaAnterior()">Anterior</button>
-      <button (click)="paginaSeguent()">Siguiente</button>
-    </div>
-    }
 </div>

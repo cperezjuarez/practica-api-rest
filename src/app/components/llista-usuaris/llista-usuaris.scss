@@ -1,70 +1,7 @@
-.container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-h2 {
-  color: #3f51b5;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.loading, .error {
-  text-align: center;
-  padding: 40px;
-}
-
-.error {
-  color: #d32f2f;
-}
-
-.error button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #3f51b5;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.error button:hover {
-  background-color: #303f9f;
-}
-
-.usuaris-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.usuari-card {
-  background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.usuari-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
-
-.usuari-card h3 {
-  color: #333;
-  margin: 0 0 5px 0;
-}
-
-.username {
-  color: #666;
-  font-style: italic;
-  margin-bottom: 15px;
-}
-
-.usuari-card p {
-  margin: 8px 0;
-  color: #555;
+.card {
+  transition: ease-in-out .3s;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
 }

@@ -1,40 +1,49 @@
-<div class="container">
-    <h2>Lista de usuarios</h2>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Lista de usuarios</h2>
 
     <!-- Indicador de carga -->
     @if (carregant()) {
-    <div class="loading">
-        <p>Cargando usuario... .</p>
-    </div>
+    <section class="row pt-5">
+        <div class="spinner-border mx-auto" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </section>
     }
 
     <!-- Mensaje de error -->
     @if (error()) {
-    <div class="error">
-        <p> {{error()}} </p>
-        <button (click)="carregarUsuaris()">Volver a probar</button>
-    </div>
+    <section class="row pt-5">
+        <p class="text-center fs-4 text-danger pb-4"> {{error()}} </p>
+        <button class="btn btn-danger mx-auto" style="width: 200px;" (click)="carregarUsuaris()">Volver a probar</button>
+    </section>
     }
 
     <!-- Lista de usuarios -->
     @if (!carregant() && !error()) {
-    <div class="usuaris-grid">
+    <section class="row row-cols-1 row-cols-md-3 g-4">
         @for (usuari of usuaris(); track usuari.id) {
-        <div class="usuari-card">
-            <h3>{{ usuari.name }}</h3>
-            <p class="username">@{{ usuari.username }}</p>
-            <p><strong>Email:</strong> {{ usuari.email }}</p>
-            @if (usuari.phone) {
-            <p><strong>Telèfon:</strong> {{ usuari.phone }}</p>
-            }
-            @if (usuari.website) {
-            <p><strong>Web:</strong> {{ usuari.website }}</p>
-            }
-            @if (usuari.company) {
-            <p><strong>Empresa:</strong> {{ usuari.company.name }}</p>
-            }
+        <div class="col">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ usuari.name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">@{{ usuari.username }}</h6>
+                    <p class="card-text"><strong>Email:</strong> {{ usuari.email }}</p>
+                    @if (usuari.phone) {
+                    <p class="card-text"><strong>Telèfon:</strong> {{ usuari.phone }}</p>
+                    }
+                    @if (usuari.website) {
+                    <p class="card-text"><strong>Web:</strong> <a href="http://{{ usuari.website }}" target="_blank">{{
+                            usuari.website }}</a></p>
+                    }
+                    @if (usuari.company) {
+                    <p class="card-text"><strong>Empresa:</strong> {{ usuari.company.name }}</p>
+                    }
+                </div>
+            </div>
         </div>
         }
-    </div>
+    </section>
     }
+
+
 </div>
