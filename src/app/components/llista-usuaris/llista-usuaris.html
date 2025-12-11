@@ -14,14 +14,20 @@
     @if (error()) {
     <section class="row pt-5">
         <p class="text-center fs-4 text-danger pb-4"> {{error()}} </p>
-        <button class="btn btn-danger mx-auto" style="width: 200px;" (click)="carregarUsuaris()">Volver a probar</button>
+        <button class="btn btn-danger mx-auto" style="width: 200px;" (click)="carregarUsuaris()">Volver a
+            probar</button>
     </section>
     }
 
     <!-- Lista de usuarios -->
     @if (!carregant() && !error()) {
+    <section class="row">
+        <form class="d-flex pb-4 mx-auto" role="search" style="max-width: 500px;">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [formControl]="cercaText" />
+        </form>
+    </section>
     <section class="row row-cols-1 row-cols-md-3 g-4">
-        @for (usuari of usuaris(); track usuari.id) {
+        @for (usuari of getUsuarisFiltrats(); track usuari.id) {
         <div class="col">
             <div class="card shadow-sm border-0 rounded-4">
                 <div class="card-body">

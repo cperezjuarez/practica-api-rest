@@ -18,8 +18,8 @@
     }
 
     @if (!carregant() && !error()) {
-    <section class="container my-4">
-        <h3 class="mb-3">Añadir publicación</h3>
+    <section class="container my-4" style="max-width: 500px;" class="mx-auto">
+        <h3 class="mb-3 text-center">Añadir publicación</h3>
 
         <form (submit)="afegirPublicacio()">
             <div class="mb-3">

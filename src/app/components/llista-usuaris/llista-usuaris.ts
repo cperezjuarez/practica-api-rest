@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { Usuari } from '../../models/usuari.model';
 import { UsuarisService } from '../../services/usuaris.service';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-llista-usuaris',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './llista-usuaris.html',
   styleUrl: './llista-usuaris.scss',
 })
@@ -14,7 +15,9 @@ export class LlistaUsuaris {
   carregant = signal(true);
   error = signal<string | null>(null);
 
-  constructor(private usuarisService: UsuarisService) {}
+  cercaText = new FormControl('');
+
+  constructor(private usuarisService: UsuarisService) { }
 
   ngOnInit(): void {
     this.carregarUsuaris();
@@ -36,5 +39,18 @@ export class LlistaUsuaris {
         console.error(err);
       }
     })
+  }
+
+  // Método para buscar usuarios
+  getUsuarisFiltrats(): Usuari[] {
+    const valor = this.cercaText.value;
+    if (!valor) {
+      return this.usuaris();
+    }
+
+    const q = String(valor).toLowerCase();
+    return this.usuaris().filter(u =>
+      u.name.toLowerCase().includes(q)
+    );
   }
 }

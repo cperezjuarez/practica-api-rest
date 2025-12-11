@@ -2,11 +2,11 @@
   <h2 class="text-center mb-4">Publicaciones</h2>
 
   @if (carregant()) {
-    <section class="row pt-5">
-        <div class="spinner-border mx-auto" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-    </section>
+  <section class="row pt-5">
+    <div class="spinner-border mx-auto" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </section>
   }
 
   @if (error()) {
@@ -31,12 +31,20 @@
       </div>
     </div>
     }
+    <nav>
+      <ul class="pagination justify-content-center">
+        <li class="page-item" style="cursor: pointer;">
+          <a class="page-link" (click)="paginaAnterior()">Previous</a>
+        </li>
+        <li class="page-item" style="cursor: pointer;"><a class="page-link">1</a></li>
+        <li class="page-item" style="cursor: pointer;"><a class="page-link">2</a></li>
+        <li class="page-item" style="cursor: pointer;"><a class="page-link">3</a></li>
+        <li class="page-item" style="cursor: pointer;">
+          <a class="page-link" (click)="paginaSeguent()">Next</a>
+        </li>
+      </ul>
+    </nav>
   </section>
-
-  <div class="d-flex justify-content-between mb-5">
-    <button class="btn btn-secondary" (click)="paginaAnterior()">Anterior</button>
-    <button class="btn btn-primary" (click)="paginaSeguent()">Siguiente</button>
-  </div>
   }
 
 </div>

@@ -17,7 +17,7 @@ export class NovaPublicacio {
     body: '',
     userId: 1
   };
-  carregant = signal(true);
+  carregant = signal(false);
   error = signal<string | null>(null);
 
   constructor(private publicacionsService: PublicacionsService) { }
@@ -37,6 +37,7 @@ export class NovaPublicacio {
           userId: 1,
         };
         this.carregant.set(false);
+        alert("Publicación añadida");
       },
       error: (err) => {
         this.error.set('Error al crear la publicación');
