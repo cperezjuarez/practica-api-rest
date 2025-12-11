@@ -31,20 +31,15 @@
       </div>
     </div>
     }
-    <nav>
-      <ul class="pagination justify-content-center">
-        <li class="page-item" style="cursor: pointer;">
-          <a class="page-link" (click)="paginaAnterior()">Previous</a>
-        </li>
-        <li class="page-item" style="cursor: pointer;"><a class="page-link">1</a></li>
-        <li class="page-item" style="cursor: pointer;"><a class="page-link">2</a></li>
-        <li class="page-item" style="cursor: pointer;"><a class="page-link">3</a></li>
-        <li class="page-item" style="cursor: pointer;">
-          <a class="page-link" (click)="paginaSeguent()">Next</a>
-        </li>
-      </ul>
-    </nav>
   </section>
+  <div class="row">
+    <div class="col-12">
+      <ul class="pagination mx-auto">
+        <li class="page-item"><a class="page-link" (click)="paginaAnterior()">Previous</a></li>
+        <li class="page-item"><a class="page-link" (click)="paginaSeguent()">Next</a></li>
+      </ul>
+    </div>
+  </div>
   }
 
 </div>
