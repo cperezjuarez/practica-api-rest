@@ -26,7 +26,7 @@ export class LlistaPublicacions {
   // Metodos
 
   // Método para cargar publicaciones
-  carregarPublicacions() {
+  carregarPublicacions(): void {
     this.carregant.set(true);
     this.error.set(null);
 

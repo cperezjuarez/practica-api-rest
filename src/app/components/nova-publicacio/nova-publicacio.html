@@ -1,0 +1,39 @@
+<div>
+    <h2 class="text-center mb-4">Formulario para añadir una publicación</h2>
+
+    <!-- Indicador de carga -->
+    @if (carregant()) {
+    <section class="row pt-5">
+        <div class="spinner-border mx-auto" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </section>
+    }
+
+    <!-- Mensaje de error -->
+    @if (error()) {
+    <section class="row pt-5">
+        <p class="text-center fs-4 text-danger pb-4"> {{error()}} </p>
+    </section>
+    }
+
+    @if (!carregant() && !error()) {
+    <section class="container my-4">
+        <h3 class="mb-3">Añadir publicación</h3>
+
+        <form (submit)="afegirPublicacio()">
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Título</label>
+                <input type="text" id="titulo" class="form-control" [(ngModel)]="novaPublicacio.title" name="titulo" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="contenido" class="form-label">Contenido</label>
+                <textarea id="contenido" class="form-control" rows="4" [(ngModel)]="novaPublicacio.body" name="contenido" required> </textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Añadir publicación</button>
+        </form>
+    </section>
+    }
+</div>
